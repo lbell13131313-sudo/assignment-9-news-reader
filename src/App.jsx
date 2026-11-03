@@ -7,6 +7,7 @@ import SavedArticlesPage from './pages/SavedArticlesPage';
 // the new imports for app
 import { AuthProvider } from './context/AuthContext';
 import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // the AuthProvider wraps the router so that the authentication state is available to all routes and components
 function App() {
@@ -18,7 +19,15 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/search" element={<SearchPage />} />
-              <Route path="/saved" element={<SavedArticlesPage />} />
+              {/* saved articles need the user to be logged in to access them */}
+              <Route
+                path="/saved"
+                element={
+                  <ProtectedRoute>
+                    <SavedArticlesPage />
+                  </ProtectedRoute>
+                }
+              />
               {/* new route added for the login page */}
               <Route path="/login" element={<Login />} />
             </Routes>
