@@ -1,9 +1,19 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useArticles } from '../context/ArticlesContext';
+// import useAuth so I can use the user, logout, and isAuthenticated functions
+import { useAuth } from '../context/AuthContext';
 
 function Navigation() {
   const location = useLocation();
   const { savedArticles } = useArticles();
+
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <nav>
@@ -33,8 +43,23 @@ function Navigation() {
           </div>
         </div>
         {/* ⚠️ SECURITY ISSUE: No login/logout functionality */}
+        {/* if user is logged in. display username and logout button, if not logged in, display a login link */}
         <div className="nav-user">
-          No authentication required
+          {isAuthenticated ? (
+            <div className="user-info">
+              <span className="username">👤 {user.username}</span>
+              {user.role === 'admin' && (
+                <span className="admin-badge">Admin</span>
+              )}
+              <button onClick={handleLogout} className="logout-button">
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link to="/login" className="login-link">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </nav>
