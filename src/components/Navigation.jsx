@@ -42,7 +42,7 @@ function Navigation() {
             </Link>
 
             {/* if isAdmin is true then this link will appear */}
-            {isAdmin() && <Link> to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`} Admin </Link>}
+            {isAdmin() && <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}> Admin </Link>}
           </div>
         </div>
         {/* ⚠️ SECURITY ISSUE: No login/logout functionality */}
@@ -51,7 +51,7 @@ function Navigation() {
           {isAuthenticated ? (
             <div className="user-info">
               <span className="username">👤 {user.username}</span>
-              {user.role === 'admin' && (
+              {isAdmin() && (
                 <span className="admin-badge">Admin</span>
               )}
               <button onClick={handleLogout} className="logout-button">

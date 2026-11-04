@@ -10,16 +10,6 @@ export function ArticlesProvider({ children }) {
 
   const { user } = useAuth();
 
-  /* const saveArticle = (article) => {
-    setSavedArticles(prev => {
-      // Check if article is already saved
-      if (prev.find(a => a.url === article.url)) {
-        return prev;
-      }
-      return [...prev, article];
-    });
-  }; */
-
   const saveArticle = (article) => {
     // Guard clause if user is not logged in
     if (!user?.username) return; 
@@ -41,10 +31,6 @@ export function ArticlesProvider({ children }) {
     });
   };
 
-  /* const removeArticle = (url) => {
-    setSavedArticles(prev => prev.filter(a => a.url !== url));
-  }; */
-
   const removeArticle = (url) => {
     // Guard clause if user is not logged in
     if (!user?.username) return; 
@@ -60,10 +46,6 @@ export function ArticlesProvider({ children }) {
       };
     });
   };
-
-  /* const isArticleSaved = (url) => {
-    return savedArticles.some(a => a.url === url);
-  }; */
 
   const isArticleSaved = (url) => {
     // Guard clause or fallback if user is not logged in
@@ -81,6 +63,10 @@ export function ArticlesProvider({ children }) {
     return savedArticles[user.username] || [];
   };
 
+  const getAllUserArticles = () => {
+    return savedArticles;
+  };
+
   return (
     <ArticlesContext.Provider 
       value={{ 
@@ -88,7 +74,8 @@ export function ArticlesProvider({ children }) {
         saveArticle, 
         removeArticle, 
         isArticleSaved,
-        getUserSavedArticles
+        getUserSavedArticles,
+        getAllUserArticles
       }}
     >
       {children}

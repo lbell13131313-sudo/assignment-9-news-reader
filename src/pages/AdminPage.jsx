@@ -1,5 +1,20 @@
+import { useAuth } from '../context/AuthContext';
+import { useArticles } from '../context/ArticlesContext';
+import { useNavigate } from 'react-router-dom';
+
 function AdminPage() {
   // Check if a user is an admin and return all users' saved articles if they are. Redirect them to home if not.
+  const { isAdmin } = useAuth();
+  const { getAllUserArticles } = useArticles();
+
+  const navigate = useNavigate();
+
+  const allUserArticles = getAllUserArticles();
+
+  // if user is not an admin, redirect them to the home page
+  if (!isAdmin()){
+    navigate('/');
+  };
 
   return (
     <div>

@@ -32,7 +32,14 @@ function App() {
               {/* new route added for the login page */}
               <Route path="/login" element={<Login />} />
               {/* new route added for the admin page */}
-              <Route path="/admin" element={<AdminPage />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminPage />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </Layout>
         </BrowserRouter>

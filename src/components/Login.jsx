@@ -72,6 +72,7 @@ function Login() {
             >
               <option value="regular">Regular User</option>
               <option value="premium">Premium User</option>
+              <option value="admin">Admin User</option>
             </select>
           </div>
 
@@ -83,7 +84,7 @@ function Login() {
         <div className="demo-accounts">
           <p className="demo-title">Demo Accounts (for testing):</p>
           <p>Any username/password combination will work</p>
-          <p>Select "Regular" or "Premium" to test different access levels</p>
+          <p>Select "Regular", "Premium", or "Admin" to test different access levels</p>
         </div>
       </div>
     </div>
