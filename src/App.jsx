@@ -8,6 +8,7 @@ import SavedArticlesPage from './pages/SavedArticlesPage';
 import { AuthProvider } from './context/AuthContext';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import AdminPage from './pages/AdminPage';
 
 // the AuthProvider wraps the router so that the authentication state is available to all routes and components
 function App() {
@@ -30,6 +31,8 @@ function App() {
               />
               {/* new route added for the login page */}
               <Route path="/login" element={<Login />} />
+              {/* new route added for the admin page */}
+              <Route path="/admin" element={<AdminPage />} />
             </Routes>
           </Layout>
         </BrowserRouter>

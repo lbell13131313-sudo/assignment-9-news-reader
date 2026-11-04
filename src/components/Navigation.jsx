@@ -7,7 +7,7 @@ function Navigation() {
   const location = useLocation();
   const { getUserSavedArticles } = useArticles();
 
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -40,6 +40,9 @@ function Navigation() {
             >
               Saved Articles ({getUserSavedArticles().length})
             </Link>
+
+            {/* if isAdmin is true then this link will appear */}
+            {isAdmin() && <Link> to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`} Admin </Link>}
           </div>
         </div>
         {/* ⚠️ SECURITY ISSUE: No login/logout functionality */}

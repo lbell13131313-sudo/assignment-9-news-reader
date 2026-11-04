@@ -54,13 +54,19 @@ export function AuthProvider({ children }) {
     return user?.role === role;
   };
 
+  // checks if user has the premium role
+  const isAdmin = () => {
+    return user?.role === 'premium';
+  }
+
   // Context value that will be available to all children
   const value = {
     user,
     isAuthenticated,
     login,
     logout,
-    hasRole
+    hasRole,
+    isAdmin
   };
 
   return (
