@@ -73,24 +73,27 @@ export function ArticlesProvider({ children }) {
     return userArticles.some(a => a.url === url);
   };
 
+  const getUserSavedArticles = () => {
+    // Guard clause if user is not logged in or doesn't have a username
+    if (!user?.username) return [];
+
+    // Return the specific user's array, or an empty array fallback
+    return savedArticles[user.username] || [];
+  };
+
   return (
     <ArticlesContext.Provider 
       value={{ 
         savedArticles, 
         saveArticle, 
         removeArticle, 
-        isArticleSaved 
+        isArticleSaved,
+        getUserSavedArticles
       }}
     >
       {children}
     </ArticlesContext.Provider>
   );
-};
-
-export function getUserSavedArticles() {
-  const { user } = useAuth();
-
-  
 };
 
 export const useArticles = () => {
