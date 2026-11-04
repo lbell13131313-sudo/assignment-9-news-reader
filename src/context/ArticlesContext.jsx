@@ -6,9 +6,23 @@ import { useAuth } from './AuthContext';
 const ArticlesContext = createContext();
 
 export function ArticlesProvider({ children }) {
-  const [savedArticles, setSavedArticles] = useState({}); //useState([])
+  // impliments localstorage into teh savedArticles
+  const [savedArticles, setSavedArticles] = useState(() => {
+    try {
+      const storedArticles = localStorage.getItem('user_saved_articles');
+      return storedArticles ? JSON.parse(storedArticles) : {};
+    } catch {
+      console.error("Failed to parse saved articles from localStorage:");
+      return {};
+    }
+  });
 
   const { user } = useAuth();
+
+  // updates local storage whenever savedArticles is updated
+  useEffect(() => {
+    localStorage.setItem('user_saved_articles', JSON.stringify(savedArticles));
+  }, [savedArticles]);
 
   const saveArticle = (article) => {
     // Guard clause if user is not logged in
