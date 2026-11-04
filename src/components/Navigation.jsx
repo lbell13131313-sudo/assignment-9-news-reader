@@ -38,7 +38,7 @@ function Navigation() {
               to="/saved" 
               className={`nav-link ${location.pathname === '/saved' ? 'active' : ''}`}
             >
-              Saved Articles ({getUserSavedArticles.length})
+              Saved Articles ({getUserSavedArticles().length})
             </Link>
           </div>
         </div>

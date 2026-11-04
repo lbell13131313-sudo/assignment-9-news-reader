@@ -16,13 +16,13 @@ function SavedArticlesPage() {
         </p>
       </div> */}
 
-      {getUserSavedArticles.length === 0 ? (
+      {getUserSavedArticles().length === 0 ? (
         <div className="message">
           No saved articles yet. Browse articles and click the bookmark icon to save them!
         </div>
       ) : (
         <div className="articles-grid">
-          {getUserSavedArticles.map((article, index) => (
+          {getUserSavedArticles().map((article, index) => (
             <ArticleCard key={index} article={article} />
           ))}
         </div>
