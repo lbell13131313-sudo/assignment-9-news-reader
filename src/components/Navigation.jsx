@@ -33,7 +33,6 @@ function Navigation() {
             >
               Search
             </Link>
-            {/* ⚠️ SECURITY ISSUE: No authentication required to access saved articles */}
             <Link 
               to="/saved" 
               className={`nav-link ${location.pathname === '/saved' ? 'active' : ''}`}
@@ -45,8 +44,6 @@ function Navigation() {
             {isAdmin() && <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}> Admin </Link>}
           </div>
         </div>
-        {/* ⚠️ SECURITY ISSUE: No login/logout functionality */}
-        {/* if user is logged in. display username and logout button, if not logged in, display a login link */}
         <div className="nav-user">
           {isAuthenticated ? (
             <div className="user-info">
